@@ -87,19 +87,19 @@
 
 
 
-<meta name="description" content="Calibration of Forward Rate CurveIntroductionN/A Interest RateThe time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a">
+<meta name="description" content="Calibration of Forward Rate CurveIntroductionTerm structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practi">
 <meta name="keywords">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Calibration of Forward Rate Curve">
 <meta property="og:url" content="http://Quintus-Zhang.github.io/2017/04/08/Calibration of Forward Rate Curve/index.html">
 <meta property="og:site_name" content="Test">
-<meta property="og:description" content="Calibration of Forward Rate CurveIntroductionN/A Interest RateThe time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a">
-<meta property="og:image" content="http://quintus-zhang.github.io/source/images/curve.png">
-<meta property="og:updated_time" content="2017-04-15T04:18:47.000Z">
+<meta property="og:description" content="Calibration of Forward Rate CurveIntroductionTerm structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practi">
+<meta property="og:image" content="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png">
+<meta property="og:updated_time" content="2017-04-27T20:44:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Calibration of Forward Rate Curve">
-<meta name="twitter:description" content="Calibration of Forward Rate CurveIntroductionN/A Interest RateThe time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a">
-<meta name="twitter:image" content="http://quintus-zhang.github.io/source/images/curve.png">
+<meta name="twitter:description" content="Calibration of Forward Rate CurveIntroductionTerm structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practi">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png">
 
 
 
@@ -324,7 +324,7 @@
       
 
       
-        <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>N/A</p>
+        <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Term structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practitioners to understand conditions in fixed income market and to evaluate various interest rate derivatives. Actually only for several specific maturity the interest rate is known, while the other maturity can be computed by interpolation. To construct the yield curve, many approaches have been proposed. There are parametric methods like Nelson-Siegel model and non-parametric methods such as bootstrapping method and spline methods. The idea of this note is to present all the details of how we have implemented calibration of instantaneous forward rate curve using constrained cubic spline method.</p>
 <h3 id="Interest-Rate"><a href="#Interest-Rate" class="headerlink" title="Interest Rate"></a>Interest Rate</h3><p>The time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a zero-coupon bond at $P(t, T)$, holders are guaranteed to be paid one dollar at the maturity $T$ . This leads to the following definitions. Assume $t&lt;S&lt;T$,</p>
 <ul>
 <li><p>The simple forward rate for $[T,S]$ prevailing at t is given by<br>$$F(t;T,S) = {1\over S-T}({P(t, T)\over P(t, S)}-1) \tag{1}$$<br>$$\Leftrightarrow 1+(S-T)F(t;T,S)={P(t, T)\over P(t, S)} \tag{2}$$<br>Through constructing a portfolio, we can deepen our understanding of the simple forward rate. At time t, we sell one unit bond with maturity $T$ and purchase ${P(t, T)\over P(t, S)}$ unit bond with maturity $S$, which means zero net cash flow. Then we have to pay one dollar at time T, while receive ${P(t, T)\over P(t, S)}$ dollars at time S. This is equivalent to that, according to the forward rate for $[T,S]$, we would receive ${P(t, T)\over P(t, S)}$ dollars at time $S$ if invest one dollar at time $T$.</p>
@@ -361,23 +361,40 @@ $$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
 <li>underlying instrument: 3-month (90 days) Eurodollar term deposit</li>
 <li>contract expiration date: third Wednesday of each month</li>
 <li>cash settlement to 100 minus ICE 3-month LIBOR</li>
-<li>futures convexity adjustment: A Eurodollar futures buyer would demand higher rate than the corresponding forward contract, resulting a positive convexity adjustment. It can be approximated by $\Delta(t_1,t<em>2) = L</em>{fut}(t_1,t<em>2) - L</em>{fwd}(t_1,t_2)\approx {1\over 2}\sigma^2t_1t_2$</li>
+<li>futures convexity adjustment: A Eurodollar futures buyer would demand higher rate than the corresponding forward contract, resulting a positive convexity adjustment. It can be approximated by  $\Delta(t_1,t_2) = L_{fut}(t_1,t_2) - L_{fwd}(t_1,t_2)\approx {1\over 2}\sigma^2t_1t_2$ </li>
 </ul>
 </li>
 <li>Interest Rate Swap (payer interest rate swap)<ul>
 <li>notional value: N</li>
 <li>fixed rate: K</li>
-<li>a series of futures dates $T<em>{0} &lt; T</em>{1} &lt; T<em>{2} &lt; …&lt; T</em>{2n}$ with $T<em>{i}-T</em>{i-1}=0.25$ (in years). $T_{0}$ is 2 business days from t.</li>
-<li>The payer pays fixed rate K on $T<em>{2i}$ for the period $[T</em>{2i-2},T_{2i}]$</li>
-<li>The payer receives payment on $T<em>{i}$ for the period $[T</em>{i-1},T_{i}]$ according to 3-month LIBOR rate</li>
+<li>a series of futures dates  $T_{0} < T_{1} < T_{2} < ...< T_{2n}$  with  $T_{i}-T_{i-1}=0.25$  (in years).  $T_{0}$  is 2 business days from t.</li>
+<li>The payer pays fixed rate K on  $T_{2i}$  for the period  $[T_{2i-2},T_{2i}]$ </li>
+<li>The payer receives payment on  $T_{i}$  for the period  $[T_{i-1},T_{i}]$  according to 3-month LIBOR rate</li>
 <li>convention: following business day convention, end-of-month rule, and ACT/360</li>
 </ul>
 </li>
 </ul>
 <h3 id="Cubic-Spline-Interpolation-Methodology"><a href="#Cubic-Spline-Interpolation-Methodology" class="headerlink" title="Cubic Spline Interpolation Methodology"></a>Cubic Spline Interpolation Methodology</h3><p>Interpolation is a method of estimating the value of a function using the known data points. As global interpolation is subject to oscillation and overshoot problem, we prefer to use piecewise interpolation method. Linear interpolation rely on concatenating linear polynomial between each pair of data points. Although it never overshoots or oscillates, it result in a discontinuous derivative. Consider the trade-off between smoothness and overshooting, here we prefer the cubic spline method.</p>
-<p>For traditional cubic spline, we need to construct $N$ third degree polynomial $f<em>{i}(x)$, with coefficients $a</em>{i}$, $b<em>{i}$, $c</em>{i}$, $d<em>{i}$, for each pair of points $[x</em>{i}, x<em>{i+1}], 0\leq i\leq N-1$<br>$$f</em>{i}(x) = a<em>{i} + b</em>{i}x + c<em>{i}x^2 + d</em>{i}x^3 \tag{12}$$<br>Cubic spline function $f_{i}(x)$ is constructed based on the following criteria:<br>$$f_i(x_i) = y<em>i \tag{13}$$<br>$$f</em>{i+1}(x_i) = y_i \tag{14}$$<br>$$f_i^{‘}(x<em>i) = f</em>{i+1}^{‘}(x_i) \tag{15}$$<br>$$f_i^{‘’}(x<em>i) = f</em>{i+1}^{‘’}(x_i) \tag{16}$$<br>$4N$ coefficients need to be solved, but we only have $4N-2$ coefficients. Extra conditions are needed to solved the equation set.</p>
-<p>For interest rate curves, constraint spline is a good choice to avoid overshooting.   Most importantly, specifying first order derivative replaces the requirement for equal second order derivative at each point. So we have<br>$$f_i^{‘}(x<em>i) = f</em>{i+1}^{‘}(x_i) = f^{‘}(x_i) \tag{17}$$<br>Specifically, the first derivative of each point is the harmonic average of the slopes of the adjacent straight lines, and should equal to zero if the slope change sign at point.<br>$$f^{‘}(x<em>i)= {2 \over {x</em>{i+1}-x<em>{i}\over y</em>{i+1}-y<em>{i}} + {x</em>{i}-x<em>{i-1}\over y</em>{i}-y_{i-1}}} $$<br>$$= 0\ if\ slope\ changes\ sign\ at\ point$$</p>
-<p>As slope of each point is known, we can directly calculate each spline function instead of solving a system of equations.<br>$$d<em>i = {f</em>{i}^{‘’}(x<em>i)-f</em>{i}^{‘’}(x_{i-1})\over 6(x<em>i-x</em>{i-1})}$$<br>$$c<em>i = {x</em>{i}f<em>{i}^{‘’}(x</em>{i-1})-x<em>{i-1}f</em>{i}^{‘’}(x_{i})\over 2(x<em>i-x</em>{i-1})}$$<br>$$b_i = {(y<em>i-y</em>{i-1}) - c_i(x<em>i^2-x</em>{i-1}^2) - d_i(x<em>i^3-x</em>{i-1}^3)\over (x<em>i-x</em>{i-1})}$$<br>$$a<em>i = y</em>{i-1} - b<em>ix</em>{i-1} - c<em>ix</em>{i-1}^2 - d<em>ix</em>{i-1}^3$$</p>
+<p>For traditional cubic spline, we need to construct $N$ third degree polynomial  $f_{i}(x)$ , with coefficients  $a_{i}$, $b_{i}$, $c_{i}$, $d_{i}$ , for each pair of points  $[x_{i}, x_{i+1}], 0\leq i\leq N-1$ <br>
+$$f_{i}(x) = a_{i} + b_{i}x + c_{i}x^2 + d_{i}x^3 \tag{12}$$
+<br>Cubic spline function  $f_{i}(x)$  is constructed based on the following criteria:<br>
+$$f_i(x_i) = y_i \tag{13}$$
+$$f_{i+1}(x_i) = y_i \tag{14}$$
+$$f_i^{'}(x_i) = f_{i+1}^{'}(x_i) \tag{15}$$
+$$f_i^{''}(x_i) = f_{i+1}^{''}(x_i) \tag{16}$$
+<br>$4N$ coefficients need to be solved, but we only have $4N-2$ coefficients. Extra conditions are needed to solved the equation set.</p>
+<p>For interest rate curves, constraint spline is a good choice to avoid overshooting.   Most importantly, specifying first order derivative replaces the requirement for equal second order derivative at each point. So we have<br>
+$$f_i^{'}(x_i) = f_{i+1}^{'}(x_i) = f^{'}(x_i) \tag{17}$$
+<br>Specifically, the first derivative of each point is the harmonic average of the slopes of the adjacent straight lines, and should equal to zero if the slope change sign at point.<br>
+$$f^{'}(x_i)= {2 \over {x_{i+1}-x_{i}\over y_{i+1}-y_{i}} + {x_{i}-x_{i-1}\over y_{i}-y_{i-1}}} $$
+$$= 0\ if\ slope\ changes\ sign\ at\ point$$
+</p>
+<p>As slope of each point is known, we can directly calculate each spline function instead of solving a system of equations.<br>
+$$d_i = {f_{i}^{''}(x_i)-f_{i}^{''}(x_{i-1})\over 6(x_i-x_{i-1})}$$
+$$c_i = {x_{i}f_{i}^{''}(x_{i-1})-x_{i-1}f_{i}^{''}(x_{i})\over 2(x_i-x_{i-1})}$$
+$$b_i = {(y_i-y_{i-1}) - c_i(x_i^2-x_{i-1}^2) - d_i(x_i^3-x_{i-1}^3)\over (x_i-x_{i-1})}$$
+$$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
+</p>
 <h3 id="Interest-Rate-Curve-Fitting"><a href="#Interest-Rate-Curve-Fitting" class="headerlink" title="Interest Rate Curve Fitting"></a>Interest Rate Curve Fitting</h3><p>In practice, we only observe the market quotes of interest rate instruments instead of points on the forward rate curve. To obtain the forward curve, we need to calibrate an instantaneous forward rate curve to fit the market quotes. Following are the steps of algorithm construction,</p>
 <ul>
 <li>Compute the times of nodes which used as known points for interpolation</li>
@@ -389,8 +406,8 @@ $$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
 </ul>
 </li>
 <li>Calibrate the forward rate $y_i$ at node $S_i$ by making the NPV of instrument i to 0 successively.<ul>
-<li>write a function which takes argument $y<em>i$ and calculates the integral of forward rate curve between each given cash flow times $t</em>{j}$ and origin. Hence, discount factors can be calculated using $P(t,T) = e^{-\int_{t}^{T}f(t,u)\mathrm{d}u}$</li>
-<li>write a function which takes argument $y_i$ and calculates the NPV of instrument i: $NPV(y<em>i) = A</em>{i1}P_{i1}(y<em>i) + A</em>{i2}P_{i2}(y<em>i) + … +A</em>{in}P_{in}(y_i)$. n is the number of cash flows for instrument i.</li>
+<li>write a function which takes argument  $y_i$  and calculates the integral of forward rate curve between each given cash flow times  $t_{j}$  and origin. Hence, discount factors can be calculated using  $P(t,T) = e^{-\int_{t}^{T}f(t,u)\mathrm{d}u}$ </li>
+<li>write a function which takes argument $y_i$ and calculates the NPV of instrument i:  $NPV(y_i) = A_{i1}P_{i1}(y_i) + A_{i2}P_{i2}(y_i) + ... +A_{in}P_{in}(y_i)$ . $n$ is the number of cash flows for instrument $i$.</li>
 <li>Use Scipy function fsolve to solve for $y_i$ such that $NPV(y_i) = 0$ and replace the old $y_i$ with the new one</li>
 </ul>
 </li>
@@ -400,9 +417,8 @@ $$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
 </ul>
 </li>
 </ul>
-<h3 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h3><p>In summary, we have constructed the instantaneous forward rate curve from several instruments including USD 3M LIBOR, Eurodollar futures, and Swaps.</p>
-<p>To be continued…</p>
-<p><img src="/source/images/curve.png" alt="Curve"></p>
+<h3 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h3><p>In summary, we have constructed the instantaneous forward rate curve from several instruments including USD 3M LIBOR, Eurodollar futures, and Swaps. The blue curve is the instantaneous forward curve and the yellow curve is the zero rate curve, which is constructed by integrating the forward curve.</p>
+<p><img src="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png" alt="Curve"></p>
 
       
     </div>
