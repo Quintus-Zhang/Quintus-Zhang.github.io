@@ -341,8 +341,8 @@
       
         
           
-            <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Term structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practitioners to understand conditions in fixed income market and to evaluate various interest rate derivatives. Actually only for several specific maturity the interest rate is known, while the other maturity can be computed by interpolation. To construct the yield curve, many approaches have been proposed. There are parametric methods like Nelson-Siegel model and non-parametric methods such as bootstrapping method and spline methods. The idea of this note is to present all the details of how we have implemented calibration of instantaneous forward rate curve using constrained cubic spline method.</p>
-<h3 id="Interest-Rate"><a href="#Interest-Rate" class="headerlink" title="Interest Rate"></a>Interest Rate</h3><p>The time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a zero-coupon bond at $P(t, T)$, holders are guaranteed to be paid one dollar at the maturity $T$ . This leads to the following definitions. Assume $t&lt;S&lt;T$,</p>
+            <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Term structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practitioners to understand conditions in fixed income market and to evaluate various interest rate derivatives. Actually only for several specific maturity the interest rate is known, while the other maturity can be computed by interpolation. To construct the yield curve, many approaches have been proposed. There are parametric methods like Nelson-Siegel model and non-parametric methods such as bootstrapping method and spline methods. The idea of this note is to present all the details of how we have implemented calibration of instantaneous forward rate curve using constrained cubic spline method.</p>
+<h2 id="Interest-Rate"><a href="#Interest-Rate" class="headerlink" title="Interest Rate"></a>Interest Rate</h2><p>The time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a zero-coupon bond at $P(t, T)$, holders are guaranteed to be paid one dollar at the maturity $T$ . This leads to the following definitions. Assume $t&lt;S&lt;T$,</p>
 <ul>
 <li><p>The simple forward rate for $[T,S]$ prevailing at t is given by<br>$$F(t;T,S) = {1\over S-T}({P(t, T)\over P(t, S)}-1) \tag{1}$$<br>$$\Leftrightarrow 1+(S-T)F(t;T,S)={P(t, T)\over P(t, S)} \tag{2}$$<br>Through constructing a portfolio, we can deepen our understanding of the simple forward rate. At time t, we sell one unit bond with maturity $T$ and purchase ${P(t, T)\over P(t, S)}$ unit bond with maturity $S$, which means zero net cash flow. Then we have to pay one dollar at time T, while receive ${P(t, T)\over P(t, S)}$ dollars at time S. This is equivalent to that, according to the forward rate for $[T,S]$, we would receive ${P(t, T)\over P(t, S)}$ dollars at time $S$ if invest one dollar at time $T$.</p>
 </li>
@@ -367,7 +367,7 @@ $$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
 
 </li>
 </ul>
-<h3 id="Related-Interest-Rate-Instruments"><a href="#Related-Interest-Rate-Instruments" class="headerlink" title="Related Interest Rate Instruments"></a>Related Interest Rate Instruments</h3><ul>
+<h2 id="Related-Interest-Rate-Instruments"><a href="#Related-Interest-Rate-Instruments" class="headerlink" title="Related Interest Rate Instruments"></a>Related Interest Rate Instruments</h2><ul>
 <li>USD 3M LIBOR<ul>
 <li>settlement date: 2 business days from the current date</li>
 <li>maturity: 3 months from the settlement date</li>
@@ -391,7 +391,7 @@ $$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
 </ul>
 </li>
 </ul>
-<h3 id="Cubic-Spline-Interpolation-Methodology"><a href="#Cubic-Spline-Interpolation-Methodology" class="headerlink" title="Cubic Spline Interpolation Methodology"></a>Cubic Spline Interpolation Methodology</h3><p>Interpolation is a method of estimating the value of a function using the known data points. As global interpolation is subject to oscillation and overshoot problem, we prefer to use piecewise interpolation method. Linear interpolation rely on concatenating linear polynomial between each pair of data points. Although it never overshoots or oscillates, it result in a discontinuous derivative. Consider the trade-off between smoothness and overshooting, here we prefer the cubic spline method.</p>
+<h2 id="Cubic-Spline-Interpolation-Methodology"><a href="#Cubic-Spline-Interpolation-Methodology" class="headerlink" title="Cubic Spline Interpolation Methodology"></a>Cubic Spline Interpolation Methodology</h2><p>Interpolation is a method of estimating the value of a function using the known data points. As global interpolation is subject to oscillation and overshoot problem, we prefer to use piecewise interpolation method. Linear interpolation rely on concatenating linear polynomial between each pair of data points. Although it never overshoots or oscillates, it result in a discontinuous derivative. Consider the trade-off between smoothness and overshooting, here we prefer the cubic spline method.</p>
 <p>For traditional cubic spline, we need to construct $N$ third degree polynomial  $f_{i}(x)$ , with coefficients  $a_{i}$, $b_{i}$, $c_{i}$, $d_{i}$ , for each pair of points  $[x_{i}, x_{i+1}], 0\leq i\leq N-1$ <br>
 $$f_{i}(x) = a_{i} + b_{i}x + c_{i}x^2 + d_{i}x^3 \tag{12}$$
 <br>Cubic spline function  $f_{i}(x)$  is constructed based on the following criteria:<br>
@@ -412,7 +412,7 @@ $$c_i = {x_{i}f_{i}^{''}(x_{i-1})-x_{i-1}f_{i}^{''}(x_{i})\over 2(x_i-x_{i-1})}$
 $$b_i = {(y_i-y_{i-1}) - c_i(x_i^2-x_{i-1}^2) - d_i(x_i^3-x_{i-1}^3)\over (x_i-x_{i-1})}$$
 $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
 </p>
-<h3 id="Interest-Rate-Curve-Fitting"><a href="#Interest-Rate-Curve-Fitting" class="headerlink" title="Interest Rate Curve Fitting"></a>Interest Rate Curve Fitting</h3><p>In practice, we only observe the market quotes of interest rate instruments instead of points on the forward rate curve. To obtain the forward curve, we need to calibrate an instantaneous forward rate curve to fit the market quotes. Following are the steps of algorithm construction,</p>
+<h2 id="Interest-Rate-Curve-Fitting"><a href="#Interest-Rate-Curve-Fitting" class="headerlink" title="Interest Rate Curve Fitting"></a>Interest Rate Curve Fitting</h2><p>In practice, we only observe the market quotes of interest rate instruments instead of points on the forward rate curve. To obtain the forward curve, we need to calibrate an instantaneous forward rate curve to fit the market quotes. Following are the steps of algorithm construction,</p>
 <ul>
 <li>Compute the times of nodes which used as known points for interpolation</li>
 <li>Assume the initial forward rate at node $S_i$ is $y_i$. Construct constrained cubic spline for each pair of nodes</li>
@@ -434,7 +434,7 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
 </ul>
 </li>
 </ul>
-<h3 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h3><p>In summary, we have constructed the instantaneous forward rate curve from several instruments including USD 3M LIBOR, Eurodollar futures, and Swaps. The blue curve is the instantaneous forward curve and the yellow curve is the zero rate curve, which is constructed by integrating the forward curve.</p>
+<h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><p>In summary, we have constructed the instantaneous forward rate curve from several instruments including USD 3M LIBOR, Eurodollar futures, and Swaps. The blue curve is the instantaneous forward curve and the yellow curve is the zero rate curve, which is constructed by integrating the forward curve.</p>
 <p><img src="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png" alt="Curve"></p>
 
           
