@@ -4,13 +4,32 @@
 
     
   <url>
+    <loc>http://Quintus-Zhang.github.io/post/on_pricing_options_with_finite_difference_methods/</loc>
+    <lastmod>2017-05-24T20:11:46.000Z</lastmod>
+    <data>
+        <display>
+        <title>On Pricing Options with Finite Difference Methods</title>
+        <pubTime>2017-05-24T17:44:34.000Z</pubTime>
+        
+        <tag>finite difference method, option pricing, Brennan Schwartz algorithm</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://Quintus-Zhang.github.io/post/calibration_of_forward_rate_curve/</loc>
-    <lastmod>2017-04-28T17:57:52.000Z</lastmod>
+    <lastmod>2017-05-24T17:32:59.000Z</lastmod>
     <data>
         <display>
         <title>Calibration of Forward Rate Curve</title>
         <pubTime>2017-04-08T06:40:51.000Z</pubTime>
         
+        <tag>instantaneous forward rate, calibration, cubic spline, LIBOR, Swap, Eurodollar futures</tag>
+         
          
            
         </display>

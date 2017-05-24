@@ -65,7 +65,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="finite difference method, option pricing, Brennan Schwartz algorithm," />
 
 
 
@@ -81,15 +81,23 @@
 
 
 
-<meta name="description" content="Seeking job opportunities in areas including portfolio management, risk management and data analysis.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="FigureOut">
-<meta property="og:url" content="http://Quintus-Zhang.github.io/index.html">
+<meta name="description" content="On Pricing Options with Finite Difference MethodsIntroductionIn this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nic">
+<meta name="keywords" content="finite difference method, option pricing, Brennan Schwartz algorithm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="On Pricing Options with Finite Difference Methods">
+<meta property="og:url" content="http://Quintus-Zhang.github.io/post/on_pricing_options_with_finite_difference_methods/index.html">
 <meta property="og:site_name" content="FigureOut">
-<meta property="og:description" content="Seeking job opportunities in areas including portfolio management, risk management and data analysis.">
+<meta property="og:description" content="On Pricing Options with Finite Difference MethodsIntroductionIn this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nic">
+<meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/boundary_conditions.png">
+<meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/grid.png">
+<meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_stable.png">
+<meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_unstable.png">
+<meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/convergence.png">
+<meta property="og:updated_time" content="2017-05-24T20:11:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="FigureOut">
-<meta name="twitter:description" content="Seeking job opportunities in areas including portfolio management, risk management and data analysis.">
+<meta name="twitter:title" content="On Pricing Options with Finite Difference Methods">
+<meta name="twitter:description" content="On Pricing Options with Finite Difference MethodsIntroductionIn this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nic">
+<meta name="twitter:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/boundary_conditions.png">
 
 
 
@@ -117,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://Quintus-Zhang.github.io/"/>
+  <link rel="canonical" href="http://Quintus-Zhang.github.io/post/on_pricing_options_with_finite_difference_methods/"/>
 
 
 
 
 
-  <title> FigureOut - Seeking job opportunities in areas including portfolio management, risk management and data analysis. </title>
+  <title> On Pricing Options with Finite Difference Methods | FigureOut </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -157,9 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -242,9 +248,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -274,10 +280,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/post/on_pricing_options_with_finite_difference_methods/" itemprop="url">
-                  On Pricing Options with Finite Difference Methods
-                </a>
+                On Pricing Options with Finite Difference Methods
               
             
           </h1>
@@ -323,6 +326,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>Views
+            </span>
+          
 
           
 
@@ -339,9 +347,7 @@
       
 
       
-        
-          
-            <h1 id="On-Pricing-Options-with-Finite-Difference-Methods"><a href="#On-Pricing-Options-with-Finite-Difference-Methods" class="headerlink" title="On Pricing Options with Finite Difference Methods"></a>On Pricing Options with Finite Difference Methods</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nicolson methods to price the European options. For American options, we implement intuitive Bermudan approach and apply the Brennan Schwartz algorithm to prevent the error propagation. Results of simple numerical experiments are shown in the end of notes. This project is implemented using Python objected-oriented programming<a href="https://github.com/Quintus-Zhang/Ferret" title="Options Pricing using Finite Difference Methods" target="_blank" rel="external">[code]</a>.</p>
+        <h1 id="On-Pricing-Options-with-Finite-Difference-Methods"><a href="#On-Pricing-Options-with-Finite-Difference-Methods" class="headerlink" title="On Pricing Options with Finite Difference Methods"></a>On Pricing Options with Finite Difference Methods</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nicolson methods to price the European options. For American options, we implement intuitive Bermudan approach and apply the Brennan Schwartz algorithm to prevent the error propagation. Results of simple numerical experiments are shown in the end of notes. This project is implemented using Python objected-oriented programming<a href="https://github.com/Quintus-Zhang/Ferret" title="Options Pricing using Finite Difference Methods" target="_blank" rel="external">[code]</a>.</p>
 <h2 id="Foundations-of-Finite-Difference-Methods"><a href="#Foundations-of-Finite-Difference-Methods" class="headerlink" title="Foundations of Finite Difference Methods"></a>Foundations of Finite Difference Methods</h2><p>In this section, we describe the fundamental ideas of finite difference applied to solve the PDE. This section includes approximation of partial derivatives, general discussion of the grid, and the way of formulating boundary conditions.</p>
 <h3 id="The-Grid"><a href="#The-Grid" class="headerlink" title="The Grid"></a>The Grid</h3><p>Consider the Black-Scholes equation in the last section, we perform a discretization leading to a two-dimensional grid. To set up a grid, firstly, we should determine the value of $S_{max}$, which is considered as the underlying price unlikely to be reached. Then we discretize the $t$ and $S$ as following,<br>$$t = 0, \delta t, 2\delta t, …, N\delta t$$</p>
 <p>$$S = 0, \delta S, 2\delta S, …, M\delta S$$</p>
@@ -631,268 +637,72 @@ For American call options, we first get an upper triangular matrix and solve for
 <h3 id="Numerical-Convergence"><a href="#Numerical-Convergence" class="headerlink" title="Numerical Convergence"></a>Numerical Convergence</h3><p>To calculate the error in finite difference method we will take the closed form solution of B-S model for a European put option as the ‘true’ value. Then we compare it the numerical solutions that implicit method and Crank-Nicolson method has produced. As the following plot suggests the numerical solution by implicit method and Crank-Nicolson method converges as $M$ and $N$ increase. We can also find that the Crank-Nicolson method converges fast than the implicit method.</p>
 <img src="/post/on_pricing_options_with_finite_difference_methods/convergence.png" alt="convergence.png" title="">
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <div>
+      
+        
+
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://Quintus-Zhang.github.io/post/calibration_of_forward_rate_curve/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Quancheng Zhang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/turntable.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FigureOut">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/post/calibration_of_forward_rate_curve/" itemprop="url">
-                  Calibration of Forward Rate Curve
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-08T02:40:51-04:00">
-                2017-04-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/finite-difference-method-option-pricing-Brennan-Schwartz-algorithm/" rel="tag"># finite difference method, option pricing, Brennan Schwartz algorithm</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/post/calibration_of_forward_rate_curve/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="post/calibration_of_forward_rate_curve/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
         
-          
-            <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Term structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practitioners to understand conditions in fixed income market and to evaluate various interest rate derivatives. Actually only for several specific maturity the interest rate is known, while the other maturity can be computed by interpolation. To construct the yield curve, many approaches have been proposed. There are parametric methods like Nelson-Siegel model and non-parametric methods such as bootstrapping method and spline methods. The idea of this note is to present all the details of how we have implemented calibration of instantaneous forward rate curve using constrained cubic spline method.</p>
-<h2 id="Interest-Rate"><a href="#Interest-Rate" class="headerlink" title="Interest Rate"></a>Interest Rate</h2><p>The time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a zero-coupon bond at $P(t, T)$, holders are guaranteed to be paid one dollar at the maturity $T$ . This leads to the following definitions. Assume $t&lt;S&lt;T$,</p>
-<ul>
-<li><p>The simple forward rate for $[T,S]$ prevailing at t is given by<br>$$F(t;T,S) = {1\over S-T}({P(t, T)\over P(t, S)}-1) \tag{1}$$<br>$$\Leftrightarrow 1+(S-T)F(t;T,S)={P(t, T)\over P(t, S)} \tag{2}$$<br>Through constructing a portfolio, we can deepen our understanding of the simple forward rate. At time t, we sell one unit bond with maturity $T$ and purchase ${P(t, T)\over P(t, S)}$ unit bond with maturity $S$, which means zero net cash flow. Then we have to pay one dollar at time T, while receive ${P(t, T)\over P(t, S)}$ dollars at time S. This is equivalent to that, according to the forward rate for $[T,S]$, we would receive ${P(t, T)\over P(t, S)}$ dollars at time $S$ if invest one dollar at time $T$.</p>
-</li>
-<li><p>The simple spot rate for $[t,T]$ is<br>$$F(t;t,T) = F(t,T) = {1\over T-t}({1\over P(t, T)}-1) \tag{3}$$<br>As we know, $P(t,t)=1$ for all $t$</p>
-</li>
-<li><p>The continuously compounded forward rate for $[T,S]$ prevailing at $t$ is<br>$$f(t;T,S) = -{logP(t,S)-logP(t,T)\over S-T} \tag{4}$$<br>$$\Leftrightarrow e^{-f(t;T,S)(S-T)}={P(t, T)\over P(t, S)} \tag{5}$$</p>
-</li>
-<li><p>The continuously compounded spot rate, a.k.a. zero rate, for $[t,T]$ is given by<br>$$f(t;t,T) = z(t,T) = -{logP(t,T)\over T-t} \tag{6}$$<br>$$\Leftrightarrow P(t,T) = e^{-z(t,T)(T-t)} \tag{7}$$</p>
-</li>
-<li><p>The instantaneous forward rate with maturity $T$ at $t$ is</p>
-
-$$\lim_{S\to T}f(t;T,S) = f(t,T) = -{\partial logP(t,T)\over \partial T} \tag{8}$$
-
-<p>$$\Leftrightarrow P(t,T) = e^{-\int_{t}^{T}f(t,u)\mathrm{d}u} \tag{9}$$</p>
-</li>
-</ul>
-<p>Equation $(9)$ reveals the relationship between instantaneous forward rate and zero-coupon bond, in other words, discount rate. Plugging $(9)$ into $(6)$, we have<br>$$z(t,T) = {\int_{t}^{T}f(t,u)\mathrm{d}u \over T-t \tag{10}}$$</p>
-<p>This equation shows that zero rate curve can be built by integrating the instantaneous forward curve.</p>
-<ul>
-<li>The instantaneous short rate at time $t$ is defined by
-$$\lim_{T\to t}z(t,T) = r(t) = \lim_{T\to t}f(t,T) \tag{11}$$
-
-</li>
-</ul>
-<h2 id="Related-Interest-Rate-Instruments"><a href="#Related-Interest-Rate-Instruments" class="headerlink" title="Related Interest Rate Instruments"></a>Related Interest Rate Instruments</h2><ul>
-<li>USD 3M LIBOR<ul>
-<li>settlement date: 2 business days from the current date</li>
-<li>maturity: 3 months from the settlement date</li>
-<li>convention: following business day convention, end-of-month rule, and ACT/360</li>
-</ul>
-</li>
-<li>Eurodollar Futures<ul>
-<li>underlying instrument: 3-month (90 days) Eurodollar term deposit</li>
-<li>contract expiration date: third Wednesday of each month</li>
-<li>cash settlement to 100 minus ICE 3-month LIBOR</li>
-<li>futures convexity adjustment: A Eurodollar futures buyer would demand higher rate than the corresponding forward contract, resulting a positive convexity adjustment. It can be approximated by  $\Delta(t_1,t_2) = L_{fut}(t_1,t_2) - L_{fwd}(t_1,t_2)\approx {1\over 2}\sigma^2t_1t_2$ </li>
-</ul>
-</li>
-<li>Interest Rate Swap (payer interest rate swap)<ul>
-<li>notional value: N</li>
-<li>fixed rate: K</li>
-<li>a series of futures dates  $T_{0} < T_{1} < T_{2} < ...< T_{2n}$  with  $T_{i}-T_{i-1}=0.25$  (in years).  $T_{0}$  is 2 business days from t.</li>
-<li>The payer pays fixed rate K on  $T_{2i}$  for the period  $[T_{2i-2},T_{2i}]$ </li>
-<li>The payer receives payment on  $T_{i}$  for the period  $[T_{i-1},T_{i}]$  according to 3-month LIBOR rate</li>
-<li>convention: following business day convention, end-of-month rule, and ACT/360</li>
-</ul>
-</li>
-</ul>
-<h2 id="Cubic-Spline-Interpolation-Methodology"><a href="#Cubic-Spline-Interpolation-Methodology" class="headerlink" title="Cubic Spline Interpolation Methodology"></a>Cubic Spline Interpolation Methodology</h2><p>Interpolation is a method of estimating the value of a function using the known data points. As global interpolation is subject to oscillation and overshoot problem, we prefer to use piecewise interpolation method. Linear interpolation rely on concatenating linear polynomial between each pair of data points. Although it never overshoots or oscillates, it result in a discontinuous derivative. Consider the trade-off between smoothness and overshooting, here we prefer the cubic spline method.</p>
-<p>For traditional cubic spline, we need to construct $N$ third degree polynomial  $f_{i}(x)$ , with coefficients  $a_{i}$, $b_{i}$, $c_{i}$, $d_{i}$ , for each pair of points  $[x_{i}, x_{i+1}], 0\leq i\leq N-1$ <br>
-$$f_{i}(x) = a_{i} + b_{i}x + c_{i}x^2 + d_{i}x^3 \tag{12}$$
-<br>Cubic spline function  $f_{i}(x)$  is constructed based on the following criteria:<br>
-$$f_i(x_i) = y_i \tag{13}$$
-$$f_{i+1}(x_i) = y_i \tag{14}$$
-$$f_i^{'}(x_i) = f_{i+1}^{'}(x_i) \tag{15}$$
-$$f_i^{''}(x_i) = f_{i+1}^{''}(x_i) \tag{16}$$
-<br>$4N$ coefficients need to be solved, but we only have $4N-2$ coefficients. Extra conditions are needed to solved the equation set.</p>
-<p>For interest rate curves, constraint spline is a good choice to avoid overshooting.   Most importantly, specifying first order derivative replaces the requirement for equal second order derivative at each point. So we have<br>
-$$f_i^{'}(x_i) = f_{i+1}^{'}(x_i) = f^{'}(x_i) \tag{17}$$
-<br>Specifically, the first derivative of each point is the harmonic average of the slopes of the adjacent straight lines, and should equal to zero if the slope change sign at point.<br>
-$$f^{'}(x_i)= {2 \over {x_{i+1}-x_{i}\over y_{i+1}-y_{i}} + {x_{i}-x_{i-1}\over y_{i}-y_{i-1}}} $$
-$$= 0\ if\ slope\ changes\ sign\ at\ point$$
-</p>
-<p>As slope of each point is known, we can directly calculate each spline function instead of solving a system of equations.<br>
-$$d_i = {f_{i}^{''}(x_i)-f_{i}^{''}(x_{i-1})\over 6(x_i-x_{i-1})}$$
-$$c_i = {x_{i}f_{i}^{''}(x_{i-1})-x_{i-1}f_{i}^{''}(x_{i})\over 2(x_i-x_{i-1})}$$
-$$b_i = {(y_i-y_{i-1}) - c_i(x_i^2-x_{i-1}^2) - d_i(x_i^3-x_{i-1}^3)\over (x_i-x_{i-1})}$$
-$$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
-</p>
-<h2 id="Interest-Rate-Curve-Fitting"><a href="#Interest-Rate-Curve-Fitting" class="headerlink" title="Interest Rate Curve Fitting"></a>Interest Rate Curve Fitting</h2><p>In practice, we only observe the market quotes of interest rate instruments instead of points on the forward rate curve. To obtain the forward curve, we need to calibrate an instantaneous forward rate curve to fit the market quotes. Following are the steps of algorithm construction,</p>
-<ul>
-<li>Compute the times of nodes which used as known points for interpolation</li>
-<li>Assume the initial forward rate at node $S_i$ is $y_i$. Construct constrained cubic spline for each pair of nodes</li>
-<li>Derive the times and amounts of the cash flow for each instrument. Here are 3 examples to illustrate the details.<ul>
-<li>USD 3M LIBOR: This case is straightforward. The first cash flow is $-1$. The second one is $1+{r\over 100}{30\over 360}$</li>
-<li>Eurodollar futures contract: There are two cash flows. The first one is $1-F/4$ which happens at the settlement $t$. The second one is $1$ happens at $t+0.25$. $F$, the forward rate, can be calculated using this equation $F = 1 - Q/100 - 0.5\sigma^2t(t+0.25)$. $1-Q/100$ is the futures rate and $Q$(out of $100) is the futures quote.</li>
-<li>2-year Swap with fixed coupon c: There are five cash flows: $-1$ at time 2 business days from today, $c/2$ at the end of each $6$ month after $2$ business days, $1+c/2$ at $2$ B-days + $24$ months</li>
-</ul>
-</li>
-<li>Calibrate the forward rate $y_i$ at node $S_i$ by making the NPV of instrument i to 0 successively.<ul>
-<li>write a function which takes argument  $y_i$  and calculates the integral of forward rate curve between each given cash flow times  $t_{j}$  and origin. Hence, discount factors can be calculated using  $P(t,T) = e^{-\int_{t}^{T}f(t,u)\mathrm{d}u}$ </li>
-<li>write a function which takes argument $y_i$ and calculates the NPV of instrument i:  $NPV(y_i) = A_{i1}P_{i1}(y_i) + A_{i2}P_{i2}(y_i) + ... +A_{in}P_{in}(y_i)$ . $n$ is the number of cash flows for instrument $i$.</li>
-<li>Use Scipy function fsolve to solve for $y_i$ such that $NPV(y_i) = 0$ and replace the old $y_i$ with the new one</li>
-</ul>
-</li>
-<li>Stopping rule<ul>
-<li>the maximum number of calibration is exceeded.</li>
-<li>the maximum change of forward rates is less than a threshold.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Numerical-Results"><a href="#Numerical-Results" class="headerlink" title="Numerical Results"></a>Numerical Results</h2><p>In summary, we have constructed the instantaneous forward rate curve from several instruments including USD 3M LIBOR, Eurodollar futures, and Swaps. The blue curve is the instantaneous forward curve and the yellow curve is the zero rate curve, which is constructed by integrating the forward curve.</p>
-<p><img src="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png" alt="Curve"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/post/calibration_of_forward_rate_curve/" rel="prev" title="Calibration of Forward Rate Curve">
+                Calibration of Forward Rate Curve <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -900,6 +710,17 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -919,8 +740,17 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/turntable.jpeg"
@@ -984,6 +814,22 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#On-Pricing-Options-with-Finite-Difference-Methods"><span class="nav-number">1.</span> <span class="nav-text">On Pricing Options with Finite Difference Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Foundations-of-Finite-Difference-Methods"><span class="nav-number">1.2.</span> <span class="nav-text">Foundations of Finite Difference Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Grid"><span class="nav-number">1.2.1.</span> <span class="nav-text">The Grid</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Difference-Approximation"><span class="nav-number">1.2.2.</span> <span class="nav-text">Difference Approximation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Boundary-Conditions"><span class="nav-number">1.2.3.</span> <span class="nav-text">Boundary Conditions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Finite-Difference-Methods"><span class="nav-number">1.3.</span> <span class="nav-text">Finite Difference Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Explicit-Method"><span class="nav-number">1.3.1.</span> <span class="nav-text">Explicit Method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Discretization"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Discretization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Form"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Matrix Form</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Implicit-Method"><span class="nav-number">1.3.2.</span> <span class="nav-text">Implicit Method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Discretization-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Discretization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Form-1"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Matrix Form</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Crank-Nicolson-Method"><span class="nav-number">1.3.3.</span> <span class="nav-text">Crank-Nicolson Method</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Discretization-2"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">Discretization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix-Form-2"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">Matrix Form</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Consistency-Stability-and-Convergence"><span class="nav-number">1.3.4.</span> <span class="nav-text">Consistency, Stability and Convergence</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#American-Options"><span class="nav-number">1.3.5.</span> <span class="nav-text">American Options</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bermudan-Approximation-Method"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">Bermudan Approximation Method</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Brennan-Schwartz-Algorithm"><span class="nav-number">1.3.5.2.</span> <span class="nav-text">Brennan Schwartz Algorithm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numerical-Results"><span class="nav-number">1.4.</span> <span class="nav-text">Numerical Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Option-price-visualization"><span class="nav-number">1.4.1.</span> <span class="nav-text">Option price visualization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Numerical-Convergence"><span class="nav-number">1.4.2.</span> <span class="nav-text">Numerical Convergence</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1106,6 +952,10 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -1123,6 +973,18 @@ $$a_i = y_{i-1} - b_ix_{i-1} - c_ix_{i-1}^2 - d_ix_{i-1}^3$$
       <script id="dsq-count-scr" src="https://FigureOut.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Quintus-Zhang.github.io/post/on_pricing_options_with_finite_difference_methods/';
+          this.page.identifier = 'post/on_pricing_options_with_finite_difference_methods/';
+          this.page.title = 'On Pricing Options with Finite Difference Methods';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://FigureOut.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

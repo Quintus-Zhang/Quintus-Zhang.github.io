@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://Quintus-Zhang.github.io/post/on_pricing_options_with_finite_difference_methods/</loc>
+    
+    <lastmod>2017-05-24T20:11:46.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://Quintus-Zhang.github.io/post/calibration_of_forward_rate_curve/</loc>
     
-    <lastmod>2017-04-28T17:57:52.000Z</lastmod>
+    <lastmod>2017-05-24T17:32:59.000Z</lastmod>
     
   </url>
   
