@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_stable.png">
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_unstable.png">
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/convergence.png">
-<meta property="og:updated_time" content="2017-05-24T20:36:53.000Z">
+<meta property="og:updated_time" content="2017-05-24T20:45:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="On Pricing Options with Finite Difference Methods">
 <meta name="twitter:description" content="On Pricing Options with Finite Difference MethodsIntroductionIn this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nic">
@@ -353,7 +353,7 @@
 <h3 id="The-Grid"><a href="#The-Grid" class="headerlink" title="The Grid"></a>The Grid</h3><p>Consider the Black-Scholes equation in the last section, we perform a discretization leading to a two-dimensional grid. To set up a grid, firstly, we should determine the value of $S_{max}$, which is considered as the underlying price unlikely to be reached. Then we discretize the $t$ and $S$ as following,<br>$$t = 0, \delta t, 2\delta t, …, N\delta t$$</p>
 <p>$$S = 0, \delta S, 2\delta S, …, M\delta S$$</p>
 <p>$\delta t$ and $\delta S$ are the mesh sized of the discretization of $t$ and $S$. Following figure illustrates part of the entire grid in the $(S, t)$-plane. For each node $(i\delta S, j\delta t)$, we use the grid notation<br>$$f_{i, j} = f(i\delta S, j\delta t)$$</p>
-<img src="/post/on_pricing_options_with_finite_difference_methods/boundary_conditions.png" alt="boundary_conditions.png" title="">
+<p>{:.text-center}<br><img src="/post/on_pricing_options_with_finite_difference_methods/boundary_conditions.png" alt="boundary_conditions.png" title=""></p>
 <p>Theoretical solution  $f_{i, j}^{*} $ of Black-Scholes equation is defined on the continuous space. In contrast, the approximation solution  $f_{i, j}$  derived from the discretization of the equation is only defined for the nodes. By controlling the parameters $S_{max}, M, N$ , discretization error can be reduced such that  $f_{i, j}$  is closer to  $f_{i, j}^{*}$ .</p>
 <h3 id="Difference-Approximation"><a href="#Difference-Approximation" class="headerlink" title="Difference Approximation"></a>Difference Approximation</h3><p>With the help of Taylor expansion, we can discretize the derivatives in the PDE leading to a recursive formula for $f_{i, j}$. Let us briefly review Taylor expansion and derivatives approximation that derived from it. Assume $f\in C^{(n+1)}$, h is small. For intermediate number $\xi$ between $x$ and $x+h$,<br>$$f(x+h) = f(x) + hf’(x) + {1\over 2}h^2f’’(x) + … + {h^n\over n!}f^{(n)}(x) + {h^{n+1}\over (n+1)!}f^{(n+1)}(\xi) \tag{1}$$</p>
 <p>Replacing terms after $h^2$ with $O(h^2)$ and moving $f’(x)$ to the left-hand side, we have forward difference, which has error order 1</p>
