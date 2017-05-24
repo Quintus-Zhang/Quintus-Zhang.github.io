@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="FigureOut">
 <meta property="og:description" content="Calibration of Forward Rate CurveIntroductionTerm structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practi">
 <meta property="og:image" content="https://raw.githubusercontent.com/Quintus-Zhang/Lynx/master/result.png">
-<meta property="og:updated_time" content="2017-05-24T17:32:59.000Z">
+<meta property="og:updated_time" content="2017-05-24T20:27:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Calibration of Forward Rate Curve">
 <meta name="twitter:description" content="Calibration of Forward Rate CurveIntroductionTerm structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practi">
@@ -344,6 +344,7 @@
 
       
         <h1 id="Calibration-of-Forward-Rate-Curve"><a href="#Calibration-of-Forward-Rate-Curve" class="headerlink" title="Calibration of Forward Rate Curve"></a>Calibration of Forward Rate Curve</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Term structure of interest rate describes the relationship between yield and maturity. In practice, the term structure is extensively used by market practitioners to understand conditions in fixed income market and to evaluate various interest rate derivatives. Actually only for several specific maturity the interest rate is known, while the other maturity can be computed by interpolation. To construct the yield curve, many approaches have been proposed. There are parametric methods like Nelson-Siegel model and non-parametric methods such as bootstrapping method and spline methods. The idea of this note is to present all the details of how we have implemented calibration of instantaneous forward rate curve using constrained cubic spline method.</p>
+<a id="more"></a>
 <h2 id="Interest-Rate"><a href="#Interest-Rate" class="headerlink" title="Interest Rate"></a>Interest Rate</h2><p>The time $t$ (today) value of a dollar at time $T \ge t$ is expressed by the zero-coupon bond with maturity $T$ , $P(t, T)$ . Purchasing a zero-coupon bond at $P(t, T)$, holders are guaranteed to be paid one dollar at the maturity $T$ . This leads to the following definitions. Assume $t&lt;S&lt;T$,</p>
 <ul>
 <li><p>The simple forward rate for $[T,S]$ prevailing at t is given by<br>$$F(t;T,S) = {1\over S-T}({P(t, T)\over P(t, S)}-1) \tag{1}$$<br>$$\Leftrightarrow 1+(S-T)F(t;T,S)={P(t, T)\over P(t, S)} \tag{2}$$<br>Through constructing a portfolio, we can deepen our understanding of the simple forward rate. At time t, we sell one unit bond with maturity $T$ and purchase ${P(t, T)\over P(t, S)}$ unit bond with maturity $S$, which means zero net cash flow. Then we have to pay one dollar at time T, while receive ${P(t, T)\over P(t, S)}$ dollars at time S. This is equivalent to that, according to the forward rate for $[T,S]$, we would receive ${P(t, T)\over P(t, S)}$ dollars at time $S$ if invest one dollar at time $T$.</p>

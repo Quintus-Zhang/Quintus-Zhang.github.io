@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_stable.png">
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/explicit_unstable.png">
 <meta property="og:image" content="http://quintus-zhang.github.io/post/on_pricing_options_with_finite_difference_methods/convergence.png">
-<meta property="og:updated_time" content="2017-05-24T20:11:46.000Z">
+<meta property="og:updated_time" content="2017-05-24T20:27:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="On Pricing Options with Finite Difference Methods">
 <meta name="twitter:description" content="On Pricing Options with Finite Difference MethodsIntroductionIn this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nic">
@@ -348,6 +348,7 @@
 
       
         <h1 id="On-Pricing-Options-with-Finite-Difference-Methods"><a href="#On-Pricing-Options-with-Finite-Difference-Methods" class="headerlink" title="On Pricing Options with Finite Difference Methods"></a>On Pricing Options with Finite Difference Methods</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>In this notes, finite difference methods for pricing European and American options are considered. We test explicit, implicit and Crank-Nicolson methods to price the European options. For American options, we implement intuitive Bermudan approach and apply the Brennan Schwartz algorithm to prevent the error propagation. Results of simple numerical experiments are shown in the end of notes. This project is implemented using Python objected-oriented programming<a href="https://github.com/Quintus-Zhang/Ferret" title="Options Pricing using Finite Difference Methods" target="_blank" rel="external">[code]</a>.</p>
+<a id="more"></a>
 <h2 id="Foundations-of-Finite-Difference-Methods"><a href="#Foundations-of-Finite-Difference-Methods" class="headerlink" title="Foundations of Finite Difference Methods"></a>Foundations of Finite Difference Methods</h2><p>In this section, we describe the fundamental ideas of finite difference applied to solve the PDE. This section includes approximation of partial derivatives, general discussion of the grid, and the way of formulating boundary conditions.</p>
 <h3 id="The-Grid"><a href="#The-Grid" class="headerlink" title="The Grid"></a>The Grid</h3><p>Consider the Black-Scholes equation in the last section, we perform a discretization leading to a two-dimensional grid. To set up a grid, firstly, we should determine the value of $S_{max}$, which is considered as the underlying price unlikely to be reached. Then we discretize the $t$ and $S$ as following,<br>$$t = 0, \delta t, 2\delta t, …, N\delta t$$</p>
 <p>$$S = 0, \delta S, 2\delta S, …, M\delta S$$</p>
