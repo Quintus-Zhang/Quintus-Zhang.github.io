@@ -2,8 +2,10 @@
 
 
 
+  
 
-<html class="theme-next muse" lang="en">
+
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -100,7 +102,7 @@
     scheme: 'Muse',
     sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: false,
-    motion: false,
+    motion: true,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -514,6 +516,10 @@
   
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
   
 
 
